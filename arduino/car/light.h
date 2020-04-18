@@ -10,7 +10,7 @@ class Light : public LightInterface {
 
   ~Light() = default;
 
-  virtual void begin() final { pinMode(pin, OUTPUT); }
+  virtual void begin() final { pinMode(_pin, OUTPUT); }
 
   virtual void enable(const bool enable = true) final {
     _enable = enable;
