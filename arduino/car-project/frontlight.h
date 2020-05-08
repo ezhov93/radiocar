@@ -13,7 +13,7 @@ class FrontLight : public LightInterface {
   virtual void begin() final {
     _left.begin();
     _right.begin();
-    helloBlink();
+    // helloBlink();
   }
 
   virtual void enable(const bool enable = true) final {
@@ -21,10 +21,7 @@ class FrontLight : public LightInterface {
     _right.enable(enable);
   }
 
-  virtual void disable(const bool disable = true) final {
-    _left.disable(disable);
-    _right.disable(disable);
-  }
+  virtual void disable(const bool disable = true) final { enable(!disable); }
 
   virtual void setBlink(const bool enable) final {
     _left.setBlink(enable);

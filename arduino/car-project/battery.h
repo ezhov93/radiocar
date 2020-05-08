@@ -1,5 +1,5 @@
-#ifndef BATTARY_H
-#define BATTARY_H
+#ifndef BATTERY_H
+#define BATTERY_H
 
 #include "filter.h"
 #include "timer.h"
@@ -11,15 +11,15 @@ class Battery {
   ~Battery() = default;
 
   void begin() {
-    pinMode(_pin, ANALOG_INPUT);
+    // pinMode(_pin, ANALOG_INPUT);
     for (int i = 0; i < 3; ++i) _filter.add(digVoltage());
     _timer.start();
   }
 
-  float voltage() const { return _filter.value() * 5.f / 1024.f; }
+  float voltage() const { return _filter.value() * 5.f / 1023.f; }
 
   void update() {
-    if (_timer.isReady) _filter.add(digVoltage());
+    if (_timer.isReady()) _filter.add(digVoltage());
   }
 
  private:
@@ -30,4 +30,4 @@ class Battery {
   int digVoltage() const { return analogRead(_pin); }
 };
 
-#endif // BATTARY_H
+#endif  // BATTERY_H

@@ -3,7 +3,7 @@
 
 class TimerObserver {
  public:
-  virtual ~TimerObserver() = delete;
+  virtual ~TimerObserver() = default;
   virtual void updateIsReady() = 0;
 };
 

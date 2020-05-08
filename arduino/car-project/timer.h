@@ -3,9 +3,12 @@
 
 #include "timerobserver.h"
 
+// #define USE_TIMER_OVERFLOW_PROTECTION
+
 class Timer {
  public:
-  explicit Timer(const int msec = 1000) : _period(msec), _active(false), _observer(nullptr) {}
+  explicit Timer(const int msec = 1000)
+      : _period(msec), _active(false), _observer(nullptr) {}
 
   ~Timer() = default;
 
@@ -14,13 +17,15 @@ class Timer {
   void start() {
     _time = millis();
     _active = true;
+    _ready = false;
   }
 
-  void stop() { _active = false; }
+  void stop() {
+    _active = false;
+    _ready = false;
+  }
 
   void restart() { start(); }
-
-  void resume() { _active = true; }
 
   bool isReady() {
     update();
@@ -32,9 +37,16 @@ class Timer {
   void update() {
     if (_active) {
       if (millis() - _time >= _period) {
-        _time = millis();
         _ready = true;
         notifyIsReady();
+#ifndef USE_TIMER_OVERFLOW_PROTECTION
+        _time += _period;
+#else
+        do {
+          _time += _period;
+          if (_time < _period) break;
+        } while (_time < millis() - _period);
+#endif
       }
     }
   }
@@ -52,8 +64,8 @@ class Timer {
     if (_observer) _observer->updateIsReady();
   }
 
-  unsigned int _period;
-  unsigned int _time;
+  uint32_t _period;
+  uint32_t _time;
   TimerObserver *_observer;
   bool _active;
   bool _ready;

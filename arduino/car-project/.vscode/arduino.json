@@ -1,0 +1,6 @@
+{
+    "sketch": "car-project.ino",
+    "board": "arduino:avr:mini",
+    "configuration": "cpu=atmega168",
+    "port": "COM8"
+}
