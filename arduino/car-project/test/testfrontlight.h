@@ -1,10 +1,10 @@
 #ifndef TESTFRONTLIGHT_H
 #define TESTFRONTLIGHT_H
 
-#include "frontlight.h"
-#include "light.h"
+#include "../frontlight.h"
+#include "../light.h"
 #include "testinterface.h"
-#include "timer.h"
+#include "../timer.h"
 
 class TestFrontLight : public TestInterface {
  public:

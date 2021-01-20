@@ -1,9 +1,9 @@
 #ifndef TESTLIGHT_H
 #define TESTLIGHT_H
 
-#include "light.h"
+#include "../light.h"
 #include "testinterface.h"
-#include "timer.h"
+#include "../timer.h"
 
 class TestLight : public TestInterface {
  public:

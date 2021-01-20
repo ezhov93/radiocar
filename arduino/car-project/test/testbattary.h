@@ -1,7 +1,7 @@
 #ifndef TESTBATTERY_H
 #define TESTBATTERY_H
 
-#include "battery.h"
+#include "../battery.h"
 #include "testinterface.h"
 #include "timer.h"
 
