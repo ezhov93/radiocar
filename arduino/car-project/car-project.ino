@@ -5,10 +5,10 @@
 #define BCK 10
 #define LEFT_LIGHT 8
 #define RIGHT_LIGHT 7
-#define CAP A4
+#define CAP A4v
 
-#include "testfrontlight.h"
-#include "testlight.h"
+#include "test/testfrontlight.h"
+#include "test/testlight.h"
 
  TestFrontLight test(LEFT_LIGHT, RIGHT_LIGHT);
 //TestLight test(LEFT_LIGHT);
